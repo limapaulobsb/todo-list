@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+}
+
+body {
+  background: linear-gradient(rgb(120 15 15), rgb(60 15 15));
+  font-family: Poppins, sans-serif;
+}
+
+body > div {
+  min-height: calc(100vh - 60px);
+  padding: 60px 5px;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  margin: 100px 0 10px;
+}
+
+footer {
+  align-items: center;
+  background-color: black;
+  background-image: linear-gradient(175deg, rgba(255 255 255 / 15%), rgba(255 255 255 / 0%) 60%);
+  box-shadow: 0 0 4px 2px rgba(0 0 0 / 40%);
+  color: white;
+  display: flex;
+  font-size: 0.8rem;
+  height: 60px;
+  justify-content: flex-end;
+  padding: 0 40px;
+}
+
+header {
+  text-align: center;
+}
+
+main {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 4px 2px rgba(0 0 0 / 20%);
+  margin: 0 auto;
+  max-width: 768px;
+  padding: 60px;
+  position: relative;
+  width: 100%;
+}
+
+mark {
+  background-color: rgb(255 255 120);
+  border-radius: 4px;
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 2.25rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.todo-input {
+  border: none;
+  border-bottom: 1px solid lightblue;
+  font-family: inherit;
+  font-size: 1rem;
+  height: 40px;
+  padding: 0 10px;
+  width: 300px;
+}
+
+.progress-bar-group {
+  box-shadow: 0 0 4px 0 rgba(0 0 0 / 20%);
+  font-size: 0.9rem;
+  margin: 40px 0 20px;
+  padding: 10px;
+}
+
+.progress-bar-background {
+  background-color: rgb(240 240 255);
+  height: 5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.progress-bar {
+  background-color: steelblue;
+  height: 5px;
+  transition: width 0.5s;
+  width: 0%;
+}
+
+.todo {
+  border-bottom: 1px solid lightblue;
+  cursor: pointer;
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 1.75rem;
+  padding: 5px 10px;
+  user-select: none;
+}
+
+.todo-control-group {
+  margin: 10px 0 120px;
+}
+
+.list-control-group {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list-button,
+.svg-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  height: 40px;
+  padding: 0 10px;
+}
+
+.list-button {
+  background-image: linear-gradient(
+    170deg,
+    rgba(255 255 255 / 20%) 10%,
+    rgba(255 255 255 / 0%) 30%
+  );
+  border: 1px solid black;
+  border-radius: 2px;
+  color: black;
+  margin: 0 10px 10px 0;
+  transition: background-color 0.25s ease;
+}
+
+.svg-button {
+  color: steelblue;
+}
+
+.hoverable-red:hover {
+  background-color: rgb(180 120 120);
+  border: 1px solid rgb(180 120 120);
+  color: white;
+}
+
+.hoverable-green:hover {
+  background-color: rgb(120 180 120);
+  border: 1px solid rgb(120 180 120);
+  color: white;
+}
+
+.hoverable-blue:hover {
+  background-color: rgb(120 120 180);
+  border: 1px solid rgb(120 120 180);
+  color: white;
+}
+
+.selected {
+  background-color: rgb(240 240 255);
+}
+
+.completed {
+  text-decoration: line-through wavy black;
+}
+
+.bottom-left-scribble {
+  bottom: 40px;
+  left: 40px;
+  opacity: 0.6;
+  position: absolute;
+  transform: rotate(-5deg);
+}
+
+.bottom-left-scribble > img {
+  width: 80px;
+}
+
+.bottom-right-scribble {
+  bottom: 20px;
+  opacity: 0.6;
+  position: absolute;
+  right: 40px;
+  transform: rotate(5deg);
+}
+
+.bottom-right-scribble > img {
+  width: 110px;
+}
+
+.top-left-scribble {
+  left: 40px;
+  opacity: 0.6;
+  position: absolute;
+  top: 40px;
+  transform: rotate(-10deg);
+}
+
+.top-left-scribble > img {
+  width: 80px;
+}
+
+.top-right-scribble {
+  opacity: 0.6;
+  position: absolute;
+  right: 60px;
+  top: 80px;
+}
+
+.top-right-scribble > img {
+  width: 60px;
+}
+
+.material-icons {
+  font-size: 2rem;
+}
+
+.material-icons.small {
+  font-size: 1rem;
+}
+
+@media only screen and (max-width: 767px) {
+  body > div {
+    min-height: calc(100vh - 80px);
+    padding-top: 20px;
+  }
+
+  footer {
+    height: 80px;
+  }
+
+  html {
+    font-size: 15px;
+  }
+
+  main {
+    padding: 40px;
+  }
+
+  .todo-input {
+    width: 200px;
+  }
+
+  .top-left-scribble {
+    left: 30px;
+    top: 120px;
+  }
+
+  .top-right-scribble {
+    right: 30px;
+    top: 90px;
+  }
+
+  .bottom-left-scribble,
+  .bottom-right-scribble {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (max-width: 374px) {
+  body > div {
+    min-height: calc(100vh - 120px);
+  }
+
+  footer {
+    height: 120px;
+  }
+
+  html {
+    font-size: 14px;
+  }
+
+  .todo-input {
+    width: 150px;
+  }
+
+  .top-left-scribble,
+  .top-right-scribble {
+    visibility: hidden;
+  }
+}

@@ -1,4 +1,23 @@
 {
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limapaulobsb/todo-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/limapaulobsb/todo-list/issues"
+  },
+  "homepage": "https://github.com/limapaulobsb/todo-list#readme",
   "devDependencies": {
     "eslint": "^8.9.0",
     "stylelint": "^14.5.0",

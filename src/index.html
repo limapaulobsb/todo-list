@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Todos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div>
+      <main>
+        <header>
+          <mark>My To Do List</mark>
+        </header>
+        <form>
+          <input type="text" class="todo-input" placeholder="New item..." />
+          <button type="submit" class="svg-button" title="Add item">
+            <i class="material-icons">add</i>
+          </button>
+        </form>
+        <p>
+          <i class="material-icons small">tips_and_updates</i>
+          Double-click an item to mark it as finished.
+        </p>
+        <div class="progress-bar-group">
+          <span>
+            Progress:
+            <span id="task-completion">No tasks</span>
+          </span>
+          <div class="progress-bar-background">
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+        <ol class="todo-list"></ol>
+        <div class="todo-control-group">
+          <button type="button" class="svg-button" id="move-up" title="Move up">
+            <i class="material-icons">expand_less</i>
+          </button>
+          <button type="button" class="svg-button" id="move-down" title="Move down">
+            <i class="material-icons">expand_more</i>
+          </button>
+          <button type="button" class="svg-button" id="remove-selected" title="Remove selected">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="list-control-group">
+          <button type="button" class="list-button hoverable-green" id="save-list">Save</button>
+          <button type="button" class="list-button hoverable-blue" id="remove-completed">
+            Remove finished
+          </button>
+          <button type="button" class="list-button hoverable-red" id="remove-all">
+            Clear List
+          </button>
+        </div>
+        <div class="bottom-left-scribble">
+          <img src="./assets/meow.svg" alt="" />
+        </div>
+        <div class="bottom-right-scribble">
+          <img src="./assets/llama.svg" alt="" />
+        </div>
+        <div class="top-left-scribble">
+          <img src="./assets/stars.svg" alt="" />
+        </div>
+        <div class="top-right-scribble">
+          <img src="./assets/hearts.svg" alt="" />
+        </div>
+      </main>
+    </div>
+    <footer>
+      <span>
+        Project started during the fundamentals module of the Web Development course at
+        <a href="https://www.betrybe.com/" target="_blank">Trybe</a>. Check out this and other
+        projects on my <a href="https://github.com/limapaulobsb" target="_blank">GitHub</a>!
+      </span>
+    </footer>
+  </body>
+  <script type="module" src="./script.js"></script>
+</html>

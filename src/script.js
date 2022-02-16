@@ -1,12 +1,16 @@
+import startObserver from './observer.js';
+
 function loadList() {
   const list = JSON.parse(localStorage.getItem('todos'));
   if (list) {
     let isCompleted;
-    const listElem = document.querySelector('ol');
+    const listElem = document.querySelector('.todo-list');
+
     list.forEach((item) => {
       const newTodo = document.createElement('li');
+      newTodo.className = 'todo';
       [newTodo.innerText, isCompleted] = item;
-      if (isCompleted) newTodo.className = 'completed';
+      if (isCompleted) newTodo.classList.add('completed');
       newTodo.tabIndex = 0;
       listElem.appendChild(newTodo);
     });
@@ -14,13 +18,13 @@ function loadList() {
 }
 
 function saveList() {
-  const todoElems = document.querySelectorAll('li');
+  const todoElems = document.querySelectorAll('.todo');
   const list = [];
   todoElems.forEach((el) => {
     list.push([el.innerText, el.matches('.completed')]);
   });
   localStorage.setItem('todos', JSON.stringify(list));
-  alert('Tarefas salvas!');
+  alert('List saved!');
 }
 
 function changeSelection(target) {
@@ -43,9 +47,10 @@ function toggleCompleted(target) {
 }
 
 function insertTodo() {
-  const inputElem = document.querySelector('input');
-  const listElem = document.querySelector('ol');
+  const inputElem = document.querySelector('.todo-input');
+  const listElem = document.querySelector('.todo-list');
   const newTodo = document.createElement('li');
+  newTodo.className = 'todo';
   newTodo.innerText = inputElem.value;
   newTodo.tabIndex = 0;
   listElem.appendChild(newTodo);
@@ -77,25 +82,28 @@ function removeCompleted() {
 }
 
 function removeAll() {
-  const listElem = document.querySelector('ol');
+  const listElem = document.querySelector('.todo-list');
   while (listElem.hasChildNodes()) {
     listElem.removeChild(listElem.firstElementChild);
   }
 }
 
-window.addEventListener('load', loadList);
+window.addEventListener('load', () => {
+  startObserver();
+  loadList();
+});
 
 document.addEventListener('click', ({ target }) => {
   if (target.matches('li')) {
     if (target.matches('.selected')) toggleCompleted(target);
     else changeSelection(target);
-  } else if (target.matches('body')) {
+  } else if (target.matches('body > div')) {
     clearSelection();
   }
 });
 
 document.addEventListener('keydown', ({ key, target }) => {
-  if ((key === 'Enter' || key === ' ') && target.matches('li')) {
+  if (key === 'Enter' && target.matches('li')) {
     if (target.matches('.selected')) toggleCompleted(target);
     else changeSelection(target);
   }
@@ -103,7 +111,8 @@ document.addEventListener('keydown', ({ key, target }) => {
 
 document.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault();
-  insertTodo();
+  const { value } = document.querySelector('.todo-input');
+  if (value) insertTodo();
 });
 
 document.getElementById('save-list').addEventListener('click', saveList);
