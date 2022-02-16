@@ -1,5 +1,11 @@
 import startObserver from './observer.js';
 
+function setDate() {
+  const dateElem = document.querySelector('.date');
+  const date = new Date().toLocaleDateString('en-US');
+  dateElem.innerText = date;
+}
+
 function loadList() {
   const list = JSON.parse(localStorage.getItem('todos'));
   if (list) {
@@ -90,6 +96,7 @@ function removeAll() {
 
 window.addEventListener('load', () => {
   startObserver();
+  setDate();
   loadList();
 });
 
