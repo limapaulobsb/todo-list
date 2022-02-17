@@ -21,16 +21,10 @@ body > div {
   padding: 60px 5px;
 }
 
-form {
-  align-items: center;
-  display: flex;
-  margin: 100px 0 10px;
-}
-
 footer {
   align-items: center;
   background-color: black;
-  background-image: linear-gradient(175deg, rgba(255 255 255 / 15%), rgba(255 255 255 / 0%) 60%);
+  background-image: linear-gradient(175deg, rgba(255 255 255 / 10%), rgba(255 255 255 / 0%) 60%);
   box-shadow: 0 0 4px 2px rgba(0 0 0 / 40%);
   color: white;
   display: flex;
@@ -40,9 +34,16 @@ footer {
   padding: 0 40px;
 }
 
+form {
+  align-items: center;
+  display: flex;
+  margin: 100px 0 10px;
+}
+
 header {
   display: flex;
   flex-direction: column;
+  font-family: 'Nothing You Could Do', cursive;
 }
 
 main {
@@ -51,7 +52,7 @@ main {
   box-shadow: 0 0 4px 2px rgba(0 0 0 / 20%);
   margin: 0 auto;
   max-width: 768px;
-  padding: 60px;
+  padding: 30px 60px 60px;
   position: relative;
   width: 100%;
 }
@@ -60,40 +61,28 @@ mark {
   align-self: center;
   background-color: rgb(255 255 120);
   border-radius: 4px;
-  font-family: 'Nothing You Could Do', cursive;
   font-size: 2.25rem;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: center;
 }
 
-p {
-  font-size: 0.9rem;
-  font-style: italic;
-}
-
-.date {
+.date-text {
   align-self: flex-end;
   border-bottom: 1px solid lightblue;
-  font-family: 'Nothing You Could Do', cursive;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
-.todo-input {
-  border: none;
-  border-bottom: 1px solid lightblue;
-  font-family: inherit;
-  font-size: 1rem;
-  height: 40px;
-  padding: 0 10px;
-  width: 300px;
+.tips-text {
+  font-size: 0.9rem;
+  font-style: italic;
 }
 
 .progress-bar-group {
   box-shadow: 0 0 4px 0 rgba(0 0 0 / 20%);
   font-size: 0.9rem;
   margin: 40px 0 20px;
-  padding: 10px;
+  padding: 20px;
 }
 
 .progress-bar-background {
@@ -119,6 +108,14 @@ p {
   user-select: none;
 }
 
+.todo.completed {
+  text-decoration: line-through wavy black;
+}
+
+.todo.selected {
+  background-color: rgb(240 240 255);
+}
+
 .todo-control-group {
   margin: 10px 0 120px;
 }
@@ -128,6 +125,16 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.default-input {
+  border: none;
+  border-bottom: 1px solid lightblue;
+  font-family: inherit;
+  font-size: 1rem;
+  height: 40px;
+  padding: 0 10px;
+  width: 300px;
 }
 
 .list-button,
@@ -174,14 +181,6 @@ p {
   background-color: rgb(120 120 180);
   border: 1px solid rgb(120 120 180);
   color: white;
-}
-
-.selected {
-  background-color: rgb(240 240 255);
-}
-
-.completed {
-  text-decoration: line-through wavy black;
 }
 
 .bottom-left-scribble {
@@ -257,7 +256,7 @@ p {
     padding: 40px;
   }
 
-  .todo-input {
+  .default-input {
     width: 200px;
   }
 
@@ -268,7 +267,7 @@ p {
 
   .top-right-scribble {
     right: 20px;
-    top: 150px;
+    top: 170px;
   }
 
   .bottom-left-scribble,
@@ -290,7 +289,7 @@ p {
     font-size: 14px;
   }
 
-  .todo-input {
+  .default-input {
     width: 150px;
   }
 

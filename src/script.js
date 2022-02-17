@@ -1,16 +1,31 @@
 import startObserver from './observer.js';
 
-function setDate() {
-  const dateElem = document.querySelector('.date');
-  const date = new Date().toLocaleDateString('en-US');
-  dateElem.innerText = date;
+// ===> Start Global Variables <===
+
+const date = new Date();
+const responsiveBreakPoint = 500;
+
+// ===> End Global Variables <===
+// ===> Start Function Declarations <===
+
+function adaptByWindowWidth() {
+  function setDate(options) {
+    const dateElem = document.getElementById('current-date');
+    dateElem.innerText = date.toLocaleDateString('en-US', options);
+  }
+
+  if (window.innerWidth >= responsiveBreakPoint) {
+    setDate({ weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  } else {
+    setDate();
+  }
 }
 
 function loadList() {
   const list = JSON.parse(localStorage.getItem('todos'));
   if (list) {
     let isCompleted;
-    const listElem = document.querySelector('.todo-list');
+    const listElem = document.getElementById('todo-list');
 
     list.forEach((item) => {
       const newTodo = document.createElement('li');
@@ -26,9 +41,7 @@ function loadList() {
 function saveList() {
   const todoElems = document.querySelectorAll('.todo');
   const list = [];
-  todoElems.forEach((el) => {
-    list.push([el.innerText, el.matches('.completed')]);
-  });
+  todoElems.forEach((el) => list.push([el.innerText, el.matches('.completed')]));
   localStorage.setItem('todos', JSON.stringify(list));
   alert('List saved!');
 }
@@ -45,16 +58,13 @@ function clearSelection() {
 }
 
 function toggleCompleted(target) {
-  if (target.matches('.completed')) {
-    target.classList.remove('completed');
-  } else {
-    target.classList.add('completed');
-  }
+  if (target.matches('.completed')) target.classList.remove('completed');
+  else target.classList.add('completed');
 }
 
 function insertTodo() {
-  const inputElem = document.querySelector('.todo-input');
-  const listElem = document.querySelector('.todo-list');
+  const inputElem = document.getElementById('description-input');
+  const listElem = document.getElementById('todo-list');
   const newTodo = document.createElement('li');
   newTodo.className = 'todo';
   newTodo.innerText = inputElem.value;
@@ -88,43 +98,50 @@ function removeCompleted() {
 }
 
 function removeAll() {
-  const listElem = document.querySelector('.todo-list');
+  const listElem = document.getElementById('todo-list');
   while (listElem.hasChildNodes()) {
     listElem.removeChild(listElem.firstElementChild);
   }
 }
 
-window.addEventListener('load', () => {
+// ===> End Function Declarations <===
+// ===> Start Onload Events and Listeners setup <===
+
+window.onload = () => {
   startObserver();
-  setDate();
+  adaptByWindowWidth();
   loadList();
-});
 
-document.addEventListener('click', ({ target }) => {
-  if (target.matches('li')) {
-    if (target.matches('.selected')) toggleCompleted(target);
-    else changeSelection(target);
-  } else if (target.matches('body > div')) {
-    clearSelection();
-  }
-});
+  document.addEventListener('click', ({ target }) => {
+    if (target.matches('li')) {
+      if (target.matches('.selected')) toggleCompleted(target);
+      else changeSelection(target);
+    } else if (target.matches('body > div')) {
+      clearSelection();
+    }
+  });
 
-document.addEventListener('keydown', ({ key, target }) => {
-  if (key === 'Enter' && target.matches('li')) {
-    if (target.matches('.selected')) toggleCompleted(target);
-    else changeSelection(target);
-  }
-});
+  document.addEventListener('keydown', ({ key, target }) => {
+    if (key === 'Enter' && target.matches('li')) {
+      if (target.matches('.selected')) toggleCompleted(target);
+      else changeSelection(target);
+    }
+  });
 
-document.querySelector('form').addEventListener('submit', (event) => {
-  event.preventDefault();
-  const { value } = document.querySelector('.todo-input');
-  if (value) insertTodo();
-});
+  document.querySelector('form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const { value } = document.getElementById('description-input');
+    if (value) insertTodo();
+  });
 
-document.getElementById('save-list').addEventListener('click', saveList);
-document.getElementById('move-up').addEventListener('click', moveUp);
-document.getElementById('move-down').addEventListener('click', moveDown);
-document.getElementById('remove-selected').addEventListener('click', removeSelected);
-document.getElementById('remove-completed').addEventListener('click', removeCompleted);
-document.getElementById('remove-all').addEventListener('click', removeAll);
+  document.getElementById('move-up').addEventListener('click', moveUp);
+  document.getElementById('move-down').addEventListener('click', moveDown);
+  document.getElementById('remove-selected').addEventListener('click', removeSelected);
+  document.getElementById('save-list').addEventListener('click', saveList);
+  document.getElementById('remove-completed').addEventListener('click', removeCompleted);
+  document.getElementById('remove-all').addEventListener('click', removeAll);
+};
+
+window.addEventListener('resize', adaptByWindowWidth);
+
+// ===> End Onload Events and Listeners setup <===

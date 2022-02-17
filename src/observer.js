@@ -1,3 +1,6 @@
+// Use MutationObserver interface to watch for changes being made to the DOM
+// tree in a specific element and update progress bar if necessary.
+
 let completedCount, itemCount;
 
 function checkProgress() {
@@ -8,8 +11,8 @@ function checkProgress() {
     completedCount = newCompletedCount;
     itemCount = newItemCount;
     const percentage = ((completedCount / itemCount) * 100 || 0).toFixed(2);
-    const progressElem = document.querySelector('.progress-bar');
-    const completionElem = document.getElementById('task-completion');
+    const progressElem = document.getElementById('completion-bar');
+    const completionElem = document.getElementById('completion-info');
     progressElem.style.width = `${percentage}%`;
 
     if (itemCount) {
@@ -25,7 +28,7 @@ function startObserver() {
     checkProgress();
   };
 
-  const listElem = document.querySelector('.todo-list');
+  const listElem = document.getElementById('todo-list');
   const options = {
     attributes: true,
     childList: true,
